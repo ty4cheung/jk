@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
-	<script type="text/javascript" src="${ctx}/jk/components/jquery-ui/jquery-1.2.6.js"></script>
+	<script type="text/javascript" src="${ctx}/components/jquery-ui/jquery-1.2.6.js"></script>
 </head>
  
 <body id="left_frame">

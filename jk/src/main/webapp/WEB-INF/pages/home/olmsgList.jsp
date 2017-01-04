@@ -15,7 +15,7 @@
 }
 
 .msgcontent {
-	width: 219px;
+	width: 218px;
 	overflow: hidden;
 	word-break: break-all;
 	padding: 10px;
