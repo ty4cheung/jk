@@ -25,17 +25,17 @@ public class ContractServiceImpl implements ContractService {
 	
 	public List<Contract> findPage(Page paramPage) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.contracDao.findPage(paramPage);
 	}
 
 	public List<Contract> find(Map paramMap) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.contracDao.find(paramMap);
 	}
 
 	public Contract get(Serializable paramSerializable) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.contracDao.get(paramSerializable);
 	}
 
 	public void insert(Contract paramContract) {
@@ -45,7 +45,7 @@ public class ContractServiceImpl implements ContractService {
 
 	public void update(Contract paramContract) {
 		// TODO Auto-generated method stub
-		
+		this.contracDao.update(paramContract);
 	}
 
 	public void deleteById(Serializable paramSerializable) {

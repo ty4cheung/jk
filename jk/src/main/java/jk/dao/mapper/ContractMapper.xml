@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="jk.dao.mapper.ContractMapper">
-	<resultMap type="jk.domain.Contract" id="contractRM">
+		<resultMap type="jk.domain.Contract" id="contractRM">
 		<id property="id" column="CONTRACT_ID"/>
 		<result property="offeror" column="OFFEROR"/>
 		<result property="contractNo" column="CONTRACT_NO"/>
@@ -30,6 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="createTime" column="CREATE_TIME"/>
 	</resultMap>
 	
+	<select id="findPage" parameterType="jk.pagination.Page" resultMap="contractRM">
+		select * from contract_c LIMIT #{pageNo},#{pageSize}
+	</select>
+	
 	<select id="find" parameterType="map" resultMap="contractRM">
 		select * from contract_c
 		where 1=1
@@ -41,6 +45,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="jk.domain.Contract">
+	
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select LAST_INSERT_ID()
+		</selectKey>
 		insert into contract_c
 		(CONTRACT_ID,OFFEROR,CONTRACT_NO,SIGNING_DATE,INPUT_BY,CHECK_BY,INSPECTOR,TOTAL_AMOUNT,
 			IMPORT_NUM,CREQUEST,CUSTOM_NAME,DELIVERY_PERIOD,SHIP_TIME,TRADE_TERMS,REMARK,PRINT_STYLE,OLD_STATE,STATE,OUT_STATE,

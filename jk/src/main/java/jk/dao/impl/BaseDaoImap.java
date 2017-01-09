@@ -38,7 +38,7 @@ public abstract class BaseDaoImap<T> extends SqlSessionDaoSupport implements Bas
 
 	public List<T> find(Map map) {
 		// TODO Auto-generated method stub
-		List<T> oList = this.getSqlSession().selectList(this.ns+".findPage",map);
+		List<T> oList = this.getSqlSession().selectList(this.ns+".find",map);
 		return oList;
 	}
 

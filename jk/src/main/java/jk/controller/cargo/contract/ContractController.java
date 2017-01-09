@@ -1,5 +1,7 @@
 package jk.controller.cargo.contract;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,8 @@ public class ContractController extends BaseController {
 
 	@RequestMapping("/cargo/contract/list.action")
 	public String list(Model model) {
-
+		 List dataList = this.contractService.find(null);
+		  model.addAttribute("dataList", dataList);
 		return "/cargo/contract/jContractList";
 	}
 

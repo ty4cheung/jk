@@ -66,7 +66,7 @@ public class TestJDBC {
 		c.setCreateTime(new Date());
 		c.setCrequest("aaaa");
 		c.setDeliveryPeriod(new Date());
-		c.setId("1");
+
 		c.setImportNum(11);
 		c.setInputBy("1");
 		c.setOldState(1);
