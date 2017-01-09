@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jk.controller.BaseController;
 import jk.domain.Contract;
@@ -25,8 +27,9 @@ public class ContractController extends BaseController {
 		return "/cargo/contract/jContractList";
 	}
 
-	@RequestMapping({ "/cargo/contract/tocreate.action" })
-	public String tocreate() {
+	@RequestMapping(value="/cargo/contract/tocreate.action")
+	public String tocreate(@RequestParam String contractId,Model model) {
+		model.addAttribute("contractId",contractId);
 		return "/cargo/contract/jContractCreate";
 	}
 

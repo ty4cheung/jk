@@ -31,4 +31,10 @@
 	<bean id="contracDao" class="jk.dao.impl.ContractDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	<bean id="factoryDao" class="jk.dao.impl.FactoryDaoImpl">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	<property name="ns" value="jk.dao.mapper.FactoryMapper" >
+	</property>
+	</bean>
+	
 </beans>

@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="jk.mapper.FactoryMapper">
+<mapper namespace="jk.dao.mapper.FactoryMapper">
 	<!-- resultMap映射 -->
 	<resultMap type="jk.domain.Factory" id="factoryRM">
 		<!-- 主键 -->
@@ -26,10 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<!-- 查询 -->
+	<!-- <if test="state!=null"> and STATE=#{state}</if> -->
 	<select id="find" parameterType="map" resultMap="factoryRM">
 		select * from factory_c
 		where 1=1
-		<if test="state!=null"> and STATE=#{state}</if>
 	</select>
 	
 	<!-- 查询一个 -->

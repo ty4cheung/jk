@@ -26,6 +26,6 @@ public abstract interface FactoryService {
 
 	  public abstract void stop(Serializable[] paramArrayOfSerializable);
 
-	public abstract List getFactoryList();
+	  public abstract List<Factory> getFactoryList();
 
 }

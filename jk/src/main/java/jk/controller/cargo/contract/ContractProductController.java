@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +17,7 @@ import jk.service.FactoryService;
  * @author zhangtai
  *
  */
+@Controller
 public class ContractProductController extends BaseController {
 	@Resource
 	  ContractProductService contractProductService;
