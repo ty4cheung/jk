@@ -49,13 +49,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
 			select LAST_INSERT_ID()
 		</selectKey>
+		<!-- CONTRACT_ID, -->
 		insert into contract_c
-		(CONTRACT_ID,OFFEROR,CONTRACT_NO,SIGNING_DATE,INPUT_BY,CHECK_BY,INSPECTOR,TOTAL_AMOUNT,
+		(OFFEROR,CONTRACT_NO,SIGNING_DATE,INPUT_BY,CHECK_BY,INSPECTOR,TOTAL_AMOUNT,
 			IMPORT_NUM,CREQUEST,CUSTOM_NAME,DELIVERY_PERIOD,SHIP_TIME,TRADE_TERMS,REMARK,PRINT_STYLE,OLD_STATE,STATE,OUT_STATE,
 			CREATE_BY,CREATE_DEPT,CREATE_TIME)
 		values
 		(
-			#{id},
+			<!-- #{id}, -->
 			#{offeror, jdbcType=VARCHAR},
 			#{contractNo, jdbcType=VARCHAR},
 			#{signingDate, jdbcType=TIMESTAMP},

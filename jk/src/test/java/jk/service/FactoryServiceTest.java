@@ -63,7 +63,12 @@ public class FactoryServiceTest {
 
 	@Test
 	public void testInsert() {
-		fail("Not yet implemented");
+		
+		Factory f = new Factory();
+		f.setCreateBy("张泰");
+		f.setFullName("同志厂");
+		f.setId("1");
+		factoryDao.insert(f);
 	}
 
 	@Test

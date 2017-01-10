@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- 通过resource扫描user.xml -->
 		<mapper resource="jk/dao/mapper/ContractMapper.xml"/>
 		<mapper resource="jk/dao/mapper/FactoryMapper.xml"/>
+		<mapper resource="jk/dao/mapper/ContractProductMapper.xml"/>
 	</mappers>
 
 </configuration>

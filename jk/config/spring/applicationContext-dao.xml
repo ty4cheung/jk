@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd ">
 
-	
+
 	<!-- mybaitis 运行环境 -->
 	<!-- 配置会话工厂，由spring管理 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -23,18 +23,21 @@
 	</bean>
 
 	<!-- 3. 使用自动扫描器 -->
-	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="jk.dao.mapper"></property>
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-	</bean> -->
-	
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> <property 
+		name="basePackage" value="jk.dao.mapper"></property> <property name="sqlSessionFactoryBeanName" 
+		value="sqlSessionFactory"></property> </bean> -->
+
 	<bean id="contracDao" class="jk.dao.impl.ContractDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
 	<bean id="factoryDao" class="jk.dao.impl.FactoryDaoImpl">
-	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	<property name="ns" value="jk.dao.mapper.FactoryMapper" >
-	</property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="ns" value="jk.dao.mapper.FactoryMapper">
+		</property>
 	</bean>
-	
+	<bean id="contractProductDao" class="jk.dao.impl.ContractProductDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="ns" value="jk.dao.impl.ContractProductDaoImpl"></property>
+	</bean>
+
 </beans>

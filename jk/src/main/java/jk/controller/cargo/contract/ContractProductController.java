@@ -39,7 +39,7 @@ public class ContractProductController extends BaseController {
 	    List dataList = this.contractProductService.find(paraMap);
 	    model.addAttribute("dataList", dataList);
 
-	    return "/cargo/contract/jContractProductCreate.jsp";
+	    return "/cargo/contract/jContractProductCreate";
 	  }
 
 	  @RequestMapping({"/cargo/contractproduct/insert.action"})
