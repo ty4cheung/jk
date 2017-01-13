@@ -9,7 +9,7 @@ import jk.domain.Contract;
  * @author zhangtai
  *
  */
-public class ContractDaoImpl extends BaseDaoImap<Contract> implements ContractDao{
+public class ContractDaoImpl extends BaseDaoImpl<Contract> implements ContractDao{
 
 
 	public ContractDaoImpl() {

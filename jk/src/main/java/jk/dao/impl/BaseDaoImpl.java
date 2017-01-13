@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import jk.dao.BaseDao;
 import jk.pagination.Page;
 
-public abstract class BaseDaoImap<T> extends SqlSessionDaoSupport implements BaseDao<T> {
+public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements BaseDao<T> {
 
 	@Autowired
 	@Override

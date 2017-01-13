@@ -37,7 +37,11 @@
 	</bean>
 	<bean id="contractProductDao" class="jk.dao.impl.ContractProductDaoImpl">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-		<property name="ns" value="jk.dao.impl.ContractProductDaoImpl"></property>
+		<property name="ns" value="jk.dao.mapper.ContractProductMapper"></property>
+	</bean>
+	<bean id="extCproductDao" class="jk.dao.impl.ExtCproductDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="ns" value="jk.dao.mapper.ExtCproductMapper"></property>
 	</bean>
 
 </beans>

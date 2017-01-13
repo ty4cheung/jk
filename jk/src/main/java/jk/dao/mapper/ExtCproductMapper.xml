@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jk.dao.mapper.ExtCproductMapper">
+		<resultMap type="jk.domain.ExtCproduct" id="extCproductRM">
+		<id property="id" column="EXT_CPRODUCT_ID"/>
+		
+		<result property="contractProductId" column="CONTRACT_PRODUCT_ID"/>
+		<result property="factoryId" column="FACTORY_ID"/>
+		
+		<result property="factoryName" column="FACTORY_NAME"/>
+		<result property="ctype" column="CTYPE"/>
+			
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="productImage" column="PRODUCT_IMAGE"/>
+		<result property="productDesc" column="PRODUCT_DESC"/>
+		<result property="cnumber" column="CNUMBER"/>
+		<result property="packingUnit" column="PACKING_UNIT"/>
+		<result property="price" column="PRICE"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="productRequest" column="PRODUCT_REQUEST"/>
+		<result property="orderNo" column="ORDER_NO"/>
+	</resultMap>
+	
+	<select id="findPage" parameterType="jk.pagination.Page" resultMap="extCproductRM">
+		select * from EXT_CPRODUCT_C LIMIT #{pageNo},#{pageSize}
+	</select>
+	
+	<select id="find" parameterType="map" resultMap="extCproductRM">
+		select * from EXT_CPRODUCT_C
+		where 1=1
+	</select>
+	
+	<select id="get" parameterType="string" resultMap="extCproductRM">
+		select * from EXT_CPRODUCT_C
+		where contract_id=#{pid}
+	</select>
+	
+	<insert id="insert" parameterType="jk.domain.ExtCproduct">
+	
+		insert into ext_cproduct_c
+		(EXT_CPRODUCT_ID,CONTRACT_PRODUCT_ID,FACTORY_ID,FACTORY_NAME,CTYPE,PRODUCT_NO,
+			PRODUCT_IMAGE,PRODUCT_DESC,CNUMBER,
+			PACKING_UNIT,PRICE,AMOUNT,PRODUCT_REQUEST,ORDER_NO)
+		values(
+			#{id},
+			#{contractProductId},
+			#{factoryId},
+			#{factoryName, jdbcType=VARCHAR},
+			#{ctype, jdbcType=INTEGER},
+			#{productNo, jdbcType=VARCHAR},
+			#{productImage, jdbcType=VARCHAR},
+			#{productDesc, jdbcType=VARCHAR},
+			#{cnumber, jdbcType=INTEGER},
+			#{packingUnit, jdbcType=VARCHAR},
+			#{price, jdbcType=DOUBLE},
+			#{amount, jdbcType=DOUBLE},
+			#{productRequest, jdbcType=VARCHAR},
+			#{orderNo, jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<update id="update" parameterType="jk.domain.ExtCproduct">
+		update EXT_CPRODUCT_C
+		<set>
+			<if test="offeror != null">OFFEROR=#{offeror},</if>
+			<if test="contractNo != null">CONTRACT_NO=#{contractNo},</if>
+			<if test="signingDate != null">SIGNING_DATE=#{signingDate},</if>
+			<if test="inputBy != null">INPUT_BY=#{inputBy},</if>
+			<if test="checkBy != null">CHECK_BY=#{checkBy},</if>
+			<if test="inspector != null">INSPECTOR=#{inspector},</if>
+			<if test="totalAmount != null">TOTAL_AMOUNT=#{totalAmount},</if>
+			<if test="importNum != null">IMPORT_NUM=#{importNum},</if>
+			<if test="crequest != null">CREQUEST=#{crequest},</if>
+			<if test="customName != null">CUSTOM_NAME=#{customName},</if>
+			<if test="deliveryPeriod != null">DELIVERY_PERIOD=#{deliveryPeriod},</if>
+			<if test="shipTime != null">SHIP_TIME=#{shipTime},</if>
+			<if test="tradeTerms != null">TRADE_TERMS=#{tradeTerms},</if>
+			<if test="remark != null">REMARK=#{remark},</if>
+			<if test="printStyle != null">PRINT_STYLE=#{printStyle},</if>
+			<if test="oldState != null">OLD_STATE=#{oldState},</if>
+			<if test="state != null">STATE=#{state},</if>
+			<if test="outState != null">OUT_STATE=#{outState},</if>
+		</set>
+		where contract_id=#{id}
+	</update>
+	
+	
+	<!-- 删除一条 -->
+	<delete id="deleteById" parameterType="string">
+		delete from EXT_CPRODUCT_C
+		where contract_id=#{pid}
+	</delete>
+	
+	<!-- 删除多条（一维字符串数组） -->
+	<delete id="delete" parameterType="string">
+		delete from EXT_CPRODUCT_C
+		where contract_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 修改状态 -->
+	<update id="updateState" parameterType="map">
+		update EXT_CPRODUCT_C set state=#{state}
+		where contract_id in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</update>
+</mapper>

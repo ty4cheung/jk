@@ -10,7 +10,7 @@ import jk.dao.FactoryDao;
 import jk.domain.Factory;
 
 
-public class FactoryDaoImpl extends BaseDaoImap<Factory> implements FactoryDao{
+public class FactoryDaoImpl extends BaseDaoImpl<Factory> implements FactoryDao{
 
 	
 	public void updateState(Map map) {
