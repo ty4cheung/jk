@@ -1,6 +1,7 @@
 package jk.service.impl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -10,7 +11,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import jk.dao.ExtCproductDao;
+import jk.dao.SysCodeDao;
 import jk.domain.ExtCproduct;
+import jk.domain.SysCode;
 import jk.pagination.Page;
 import jk.service.ExtCproductService;
 import jk.util.UtilFuns;
@@ -24,6 +27,9 @@ public class ExtCproductServiceImpl implements ExtCproductService {
 
 	@Resource
 	ExtCproductDao extCproductDao;
+	
+	@Resource 
+	SysCodeDao sysCodeDao;
 
 	public List<ExtCproduct> findPage(Page page) {
 		// TODO Auto-generated method stub
@@ -64,6 +70,13 @@ public class ExtCproductServiceImpl implements ExtCproductService {
 	public void delete(Serializable[] ids) {
 		// TODO Auto-generated method stub
 		this.extCproductDao.delete(ids);
+	}
+
+	public List<SysCode> getCtypeList() {
+		Map map = new HashMap();
+		map.put("parentId", "0104");				// sys_code_b 0104 附件分类
+		return this.sysCodeDao.find(map);
+		
 	}
 	
 }

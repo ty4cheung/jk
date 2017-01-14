@@ -138,7 +138,7 @@
 								<td>${o.price}</td>
 								<td>${o.amount}</td>
 								<td><a href="toupdate.action?id=${o.id}">[修改]</a> <a
-									href="deleteById.action?id=${o.id}">[删除]</a></td>
+									href="deleteById.action?id=${o.id}&contractProductId=${contractProductId}">[删除]</a></td>
 							</tr>
 						</c:forEach>
 

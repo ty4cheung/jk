@@ -84,4 +84,12 @@ public class ContractController extends BaseController {
 
 		return "redirect:/cargo/contract/list.action";
 	}
+	
+	@RequestMapping("/cargo/contract/deleteById.action")
+	public String deleteById(String id,Model model){
+		System.out.println("deleteById");
+		this.contractService.deleteById(id);
+		return "redirect:/cargo/contract/list.action";
+	}
+	
 }

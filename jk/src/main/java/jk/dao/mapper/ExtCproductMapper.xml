@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="get" parameterType="string" resultMap="extCproductRM">
 		select * from EXT_CPRODUCT_C
-		where contract_id=#{pid}
+		where ext_cproduct_id=#{pid}
 	</select>
 	
 	<insert id="insert" parameterType="jk.domain.ExtCproduct">
@@ -65,42 +65,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="jk.domain.ExtCproduct">
 		update EXT_CPRODUCT_C
 		<set>
-			<if test="offeror != null">OFFEROR=#{offeror},</if>
-			<if test="contractNo != null">CONTRACT_NO=#{contractNo},</if>
-			<if test="signingDate != null">SIGNING_DATE=#{signingDate},</if>
-			<if test="inputBy != null">INPUT_BY=#{inputBy},</if>
-			<if test="checkBy != null">CHECK_BY=#{checkBy},</if>
-			<if test="inspector != null">INSPECTOR=#{inspector},</if>
-			<if test="totalAmount != null">TOTAL_AMOUNT=#{totalAmount},</if>
-			<if test="importNum != null">IMPORT_NUM=#{importNum},</if>
-			<if test="crequest != null">CREQUEST=#{crequest},</if>
-			<if test="customName != null">CUSTOM_NAME=#{customName},</if>
-			<if test="deliveryPeriod != null">DELIVERY_PERIOD=#{deliveryPeriod},</if>
-			<if test="shipTime != null">SHIP_TIME=#{shipTime},</if>
-			<if test="tradeTerms != null">TRADE_TERMS=#{tradeTerms},</if>
-			<if test="remark != null">REMARK=#{remark},</if>
-			<if test="printStyle != null">PRINT_STYLE=#{printStyle},</if>
-			<if test="oldState != null">OLD_STATE=#{oldState},</if>
-			<if test="state != null">STATE=#{state},</if>
-			<if test="outState != null">OUT_STATE=#{outState},</if>
+			CONTRACT_PRODUCT_ID=#{contractProductId},
+			FACTORY_ID=#{factoryId},
+			<if test="factoryName != null">FACTORY_NAME=#{factoryName},</if>
+			<if test="ctype != null">CTYPE=#{ctype},</if>
+			<if test="productNo != null">PRODUCT_NO=#{productNo},</if>
+			<if test="productImage != null">PRODUCT_IMAGE=#{productImage},</if>
+			<if test="productDesc != null">PRODUCT_DESC=#{productDesc},</if>
+			<if test="cnumber != null">CNUMBER=#{cnumber},</if>
+			<if test="packingUnit != null">PACKING_UNIT=#{packingUnit},</if>
+			<if test="price != null">PRICE=#{price},</if>
+			<if test="amount != null">AMOUNT=#{amount},</if>
+			<if test="productRequest != null">PRODUCT_REQUEST=#{productRequest},</if>
+			<if test="orderNo != null">ORDER_NO=#{orderNo},</if>
 		</set>
-		where contract_id=#{id}
+		where ext_cproduct_id=#{id}
 	</update>
 	
 	
 	<!-- 删除一条 -->
 	<delete id="deleteById" parameterType="string">
 		delete from EXT_CPRODUCT_C
-		where contract_id=#{pid}
-	</delete>
-	
-	<!-- 删除多条（一维字符串数组） -->
-	<delete id="delete" parameterType="string">
-		delete from EXT_CPRODUCT_C
-		where contract_id in
-		<foreach collection="array" item="id" open="(" close=")" separator=",">
-			#{id}
-		</foreach>
+		where ext_cproduct_id=#{pid}
 	</delete>
 	
 	<!-- 修改状态 -->
@@ -111,4 +97,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{id}
 		</foreach>
 	</update>
+	
+	<!-- 删除一条 -->
+	<delete id="deleteById" parameterType="string">
+		delete from ext_cproduct_c
+		where EXT_CPRODUCT_ID=#{pid}
+	</delete>
+	
+	<!-- 删除多条（一维字符串数组） -->
+	<delete id="delete" parameterType="string">
+		delete from ext_cproduct_c
+		where EXT_CPRODUCT_ID in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 级联删除，删除某个货物下的附件 -->
+	<delete id="deleteByContractProductById" parameterType="string">
+		delete from ext_cproduct_c
+		where CONTRACT_PRODUCT_ID in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 级联删除， 删除某个合同下的附件 -->
+	<delete id="deleteByContractId" parameterType="string">
+		delete from ext_cproduct_c
+		where CONTRACT_PRODUCT_ID in
+		(
+			select contract_product_id from contract_product_c
+			 where contract_id in 
+			<foreach collection="array" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		)
+	</delete>
+	
 </mapper>

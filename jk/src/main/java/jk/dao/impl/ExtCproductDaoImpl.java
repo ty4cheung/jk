@@ -14,4 +14,12 @@ import jk.pagination.Page;
  */
 public class ExtCproductDaoImpl extends BaseDaoImpl<ExtCproduct> implements ExtCproductDao {
 
+	public void deleteByContractProductById(Serializable[] ids) {
+		super.getSqlSession().delete(super.getNs()+".deleteByContractProductById", ids);
+	}
+	
+	public void deleteByContractId(Serializable[] contractIds){
+		super.getSqlSession().delete(super.getNs()+".deleteByContractId", contractIds);
+	}
+
 }

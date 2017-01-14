@@ -1,5 +1,7 @@
 package jk.dao;
 
+import java.io.Serializable;
+
 import jk.domain.ExtCproduct;
 
 /**
@@ -7,5 +9,7 @@ import jk.domain.ExtCproduct;
  *
  */
 public interface ExtCproductDao extends BaseDao<ExtCproduct> {
+
+	void deleteByContractProductById(Serializable[] ids);
 
 }

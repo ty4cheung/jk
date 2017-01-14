@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jk.dao.mapper.SysCodeMapper">
+		<resultMap type="jk.domain.SysCode" id="sysCodeRM">
+		<id property="id" column="SYS_CODE_ID"/>
+		<result property="orderNo" column="ORDER_NO"/>
+		<result property="name" column="NAME"/>
+	</resultMap>
+	
+	<select id="find" parameterType="map" resultMap="sysCodeRM">
+		select SYS_CODE_ID,order_no,name from SYS_CODE_B
+		where 1=1
+		<if test="parentId != null">and parent_id=#{parentId}</if>
+	</select>
+	
+</mapper>

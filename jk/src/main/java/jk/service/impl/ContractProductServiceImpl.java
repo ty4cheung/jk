@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import jk.dao.ContractProductDao;
+import jk.dao.ExtCproductDao;
 import jk.domain.ContractProduct;
 import jk.pagination.Page;
 import jk.service.ContractProductService;
@@ -23,6 +24,9 @@ public class ContractProductServiceImpl implements ContractProductService {
 
 	@Resource
 	ContractProductDao contractProductDao;
+
+	@Resource
+	ExtCproductDao extCproductDao;
 
 	
 	public List<ContractProduct> findPage(Page map) {
@@ -56,7 +60,10 @@ public class ContractProductServiceImpl implements ContractProductService {
 
 	public void deleteById(Serializable paramSerializable) {
 		// TODO Auto-generated method stub
+		Serializable[] ids = {paramSerializable};
+		extCproductDao.deleteByContractProductById(ids);		//删除当前这些货物下的所有附件
 		contractProductDao.deleteById(paramSerializable);
+		
 	}
 
 	public void delete(Serializable[] paramArrayOfSerializable) {
