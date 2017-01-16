@@ -53,8 +53,9 @@ public class ContractServiceImpl implements ContractService {
 		
 	}
 
-	public void delete(Serializable[] paramArrayOfSerializable) {
+	public void delete(Serializable[] ids) {
 		// TODO Auto-generated method stub
+	this.contracDao.delete(ids);
 		
 	}
 

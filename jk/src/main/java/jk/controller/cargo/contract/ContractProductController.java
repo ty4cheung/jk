@@ -65,9 +65,9 @@ public class ContractProductController extends BaseController {
 	  
 	//修改保存
 		@RequestMapping("/cargo/contractproduct/update.action")
-		public String update(ContractProduct contractProduct){
+		public String update(ContractProduct contractProduct ,Model model){
 			contractProductService.update(contractProduct);
-			
+			model.addAttribute("contractId", contractProduct.getContractId());
 			return "redirect:/cargo/contractproduct/tocreate.action";
 		}
 		

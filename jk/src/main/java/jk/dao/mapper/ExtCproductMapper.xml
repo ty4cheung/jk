@@ -30,7 +30,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="find" parameterType="map" resultMap="extCproductRM">
 		select * from EXT_CPRODUCT_C
-		where 1=1
+		where 1=1 
+		<if test="contractProductId != null">
+			and ext_cproduct_id=#{contractProductId}
+		</if>
+		
 	</select>
 	
 	<select id="get" parameterType="string" resultMap="extCproductRM">
@@ -82,13 +86,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ext_cproduct_id=#{id}
 	</update>
 	
-	
-	<!-- 删除一条 -->
-	<delete id="deleteById" parameterType="string">
-		delete from EXT_CPRODUCT_C
-		where ext_cproduct_id=#{pid}
-	</delete>
-	
 	<!-- 修改状态 -->
 	<update id="updateState" parameterType="map">
 		update EXT_CPRODUCT_C set state=#{state}
@@ -116,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 级联删除，删除某个货物下的附件 -->
 	<delete id="deleteByContractProductById" parameterType="string">
 		delete from ext_cproduct_c
-		where CONTRACT_PRODUCT_ID in
+		where EXT_CPRODUCT_ID in
 		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
