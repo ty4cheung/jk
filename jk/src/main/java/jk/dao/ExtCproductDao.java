@@ -12,4 +12,5 @@ public interface ExtCproductDao extends BaseDao<ExtCproduct> {
 
 	void deleteByContractProductById(Serializable[] ids);
 
+	void deleteByContractId(Serializable[] ids);
 }

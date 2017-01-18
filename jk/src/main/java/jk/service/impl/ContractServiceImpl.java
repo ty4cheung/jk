@@ -9,6 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import jk.dao.ContractDao;
+import jk.dao.ContractProductDao;
+import jk.dao.ExtCproductDao;
 import jk.domain.Contract;
 import jk.pagination.Page;
 import jk.service.ContractService;
@@ -22,7 +24,13 @@ public class ContractServiceImpl implements ContractService {
 
 	@Resource
 	ContractDao contracDao;
-	
+
+	@Resource
+	ContractProductDao contractProductDao;
+
+	@Resource
+	ExtCproductDao extCproductDao;
+
 	public List<Contract> findPage(Page paramPage) {
 		// TODO Auto-generated method stub
 		return this.contracDao.findPage(paramPage);
@@ -48,25 +56,33 @@ public class ContractServiceImpl implements ContractService {
 		this.contracDao.update(paramContract);
 	}
 
-	public void deleteById(Serializable paramSerializable) {
-		// TODO Auto-generated method stub
-		
+	public void deleteById(Serializable id) {
+		this.contracDao.deleteById(id);
+		Serializable[] ids = { id };
+		// 删除当前合同下的附近信息
+		this.extCproductDao.deleteByContractId(ids);
+		// 删除当前合同下的货物信息
+		this.contractProductDao.deleteByContractId(ids);
 	}
 
 	public void delete(Serializable[] ids) {
-		// TODO Auto-generated method stub
-	this.contracDao.delete(ids);
-		
+
+		this.contracDao.delete(ids);
+		// 删除当前合同下的附近信息
+		this.extCproductDao.deleteByContractId(ids);
+		// 删除当前合同下的货物信息
+		this.contractProductDao.deleteByContractId(ids);
+
 	}
 
 	public void submit(Serializable[] paramArrayOfSerializable) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void cancel(Serializable[] paramArrayOfSerializable) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

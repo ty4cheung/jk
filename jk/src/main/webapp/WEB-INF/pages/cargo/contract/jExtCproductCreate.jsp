@@ -16,7 +16,7 @@
 </head>
 <body>
 	<form method="post">
-		<input type="text" name="contractId" value="${contractProductId}" />
+		<input type="text" name="contractProductId" value="${contractProductId}" />
 
 		<div id="menubar">
 			<div id="middleMenubar">

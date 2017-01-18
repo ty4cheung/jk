@@ -49,6 +49,7 @@
 									onclick="checkAll('id',this)"></td>
 								<td class="tableHeader">序号</td>
 								<td class="tableHeader">客户名称</td>
+								<td class="tableHeader" align="right" >货物/附件</td>
 								<td class="tableHeader">合同号</td>
 								<td class="tableHeader">制单人</td>
 								<td class="tableHeader">审单人</td>
@@ -68,7 +69,8 @@
 									onmouseout="this.className='odd'">
 									<td><input type="checkbox" name="id" value="${o.id}" /></td>
 									<td>${status.index+1}</td>
-									<td>${o.customName}</td>
+									<td align="right" style="text-align: center;">${o.customName}</td>
+									<td style="text-align: center;">${o.cpnum} ／ ${o.extnum}</td>
 									<td><a href="toview.action?id=${o.id}">${o.contractNo}</a></td>
 									<td>${o.inputBy}</td>
 									<td>${o.checkBy}</td>

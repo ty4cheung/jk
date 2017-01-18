@@ -32,14 +32,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from EXT_CPRODUCT_C
 		where 1=1 
 		<if test="contractProductId != null">
-			and ext_cproduct_id=#{contractProductId}
+			and CONTRACT_PRODUCT_ID=#{contractProductId}
 		</if>
 		
 	</select>
 	
 	<select id="get" parameterType="string" resultMap="extCproductRM">
 		select * from EXT_CPRODUCT_C
-		where ext_cproduct_id=#{pid}
+		where CONTRACT_PRODUCT_ID=#{pid}
 	</select>
 	
 	<insert id="insert" parameterType="jk.domain.ExtCproduct">
@@ -98,13 +98,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 删除一条 -->
 	<delete id="deleteById" parameterType="string">
 		delete from ext_cproduct_c
-		where EXT_CPRODUCT_ID=#{pid}
+		where CONTRACT_PRODUCT_ID=#{pid}
 	</delete>
 	
 	<!-- 删除多条（一维字符串数组） -->
 	<delete id="delete" parameterType="string">
 		delete from ext_cproduct_c
-		where EXT_CPRODUCT_ID in
+		where CONTRACT_PRODUCT_ID in
 		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
@@ -121,15 +121,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 级联删除， 删除某个合同下的附件 -->
 	<delete id="deleteByContractId" parameterType="string">
-		delete from ext_cproduct_c
-		where CONTRACT_PRODUCT_ID in
-		(
-			select contract_product_id from contract_product_c
-			 where contract_id in 
-			<foreach collection="array" item="id" open="(" close=")" separator=",">
+		delete from EXT_CPRODUCT_C WHERE CONTRACT_PRODUCT_ID in (	
+		 select CONTRACT_PRODUCT_ID from CONTRACT_PRODUCT_C WHERE contract_id in (
+		  <foreach collection="array" item="id" open="(" close=")" separator=",">
 				#{id}
 			</foreach>
-		)
+			) 
+		 
+		 )
 	</delete>
 	
 </mapper>

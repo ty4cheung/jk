@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Contract {
 	private int id;
+	private String cpnum;
+	private String extnum;
 	  private String offeror;
 	  private String contractNo;
 	  private Date signingDate;
@@ -157,6 +159,19 @@ public class Contract {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
+	public String getCpnum() {
+		return cpnum;
+	}
+	public void setCpnum(String cpnum) {
+		this.cpnum = cpnum;
+	}
+	public String getExtnum() {
+		return extnum;
+	}
+	public void setExtnum(String extnum) {
+		this.extnum = extnum;
+	}
 	  
+	
 	  
 }

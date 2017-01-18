@@ -81,6 +81,12 @@
 	            <td class="columnTitle">说明：</td>
 	            <td class="tableContent"><pre>${obj.remark}</pre></td>
 	        </tr>
+	        <tr>
+	            <td class="columnTitle">货物数：</td>
+	            <td class="tableContent"><pre>${obj.cpnum}</pre></td>
+	            <td class="columnTitle">附件数：</td>
+	            <td class="tableContent"><pre>${obj.extnum}</pre></td>
+	        </tr>
 		</table>
 	</div>
 </div>

@@ -85,5 +85,10 @@ public class ContractServiceTest {
 	public void testUpdate() {
 		fail("Not yet implemented");
 	}
+	
+	@Test
+	public void testDeleteById(){
+		
+	}
 
 }

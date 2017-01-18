@@ -1,6 +1,8 @@
 package jk.controller.cargo.contract;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,14 +30,12 @@ public class ContractController extends BaseController {
 	}
 
 	@RequestMapping(value="/cargo/contract/tocreate.action")
-	public String tocreate(@RequestParam String contractId,Model model) {
-		model.addAttribute("contractId",contractId);
+	public String tocreate(Model model) {
 		return "/cargo/contract/jContractCreate";
 	}
 
 	@RequestMapping({ "/cargo/contract/insert.action" })
 	public String insert(Contract contract) {
-		System.out.println("ContractController inser >>>>>>>>>>>>>>>>");
 		this.contractService.insert(contract);
 
 		return "redirect:/cargo/contract/list.action";
@@ -65,7 +65,9 @@ public class ContractController extends BaseController {
 
 	@RequestMapping({ "/cargo/contract/toview.action" })
 	public String toview(String id, Model model) {
-		Contract obj = this.contractService.get(id);
+		Map hashMap = new HashMap<String,Object>();
+		hashMap.put("contractid", id);
+		Contract obj = this.contractService.find(hashMap).get(0);
 		model.addAttribute("obj", obj);
 
 		return "/cargo/contract/jContractView";
