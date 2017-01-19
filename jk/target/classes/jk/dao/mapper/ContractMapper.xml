@@ -4,101 +4,161 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="jk.dao.mapper.ContractMapper">
-		<resultMap type="jk.domain.Contract" id="contractRM">
-		<id property="id" column="CONTRACT_ID"/>
+	<resultMap type="jk.domain.Contract" id="contractRM">
+		<id property="id" column="CONTRACT_ID" />
 		<!-- 虚拟字段 -->
-		<result property="cpnum" column="CPNUM"/>
-		<result property="extnum" column="EXTNUM"/>
-		
-		<result property="offeror" column="OFFEROR"/>
-		<result property="contractNo" column="CONTRACT_NO"/>
-		<result property="signingDate" column="SIGNING_DATE"/>
-		<result property="inputBy" column="INPUT_BY"/>
-		<result property="checkBy" column="CHECK_BY"/>
-		<result property="inspector" column="INSPECTOR"/>
-		<result property="totalAmount" column="TOTAL_AMOUNT"/>
-		<result property="importNum" column="IMPORT_NUM"/>
-		<result property="crequest" column="CREQUEST"/>
-		<result property="customName" column="CUSTOM_NAME"/>
-		<result property="deliveryPeriod" column="DELIVERY_PERIOD"/>
-		<result property="shipTime" column="SHIP_TIME"/>
-		<result property="tradeTerms" column="TRADE_TERMS"/>
-		<result property="remark" column="REMARK"/>
-		<result property="printStyle" column="PRINT_STYLE"/>
-		<result property="oldState" column="OLD_STATE"/>
-		<result property="state" column="STATE"/>
-		<result property="outState" column="OUT_STATE"/>
-		
-		<result property="createBy" column="CREATE_BY"/>
-		<result property="createDept" column="CREATE_DEPT"/>
-		<result property="createTime" column="CREATE_TIME"/>
+		<result property="cpnum" column="CPNUM" />
+		<result property="extnum" column="EXTNUM" />
+
+		<result property="offeror" column="OFFEROR" />
+		<result property="contractNo" column="CONTRACT_NO" />
+		<result property="signingDate" column="SIGNING_DATE" />
+		<result property="inputBy" column="INPUT_BY" />
+		<result property="checkBy" column="CHECK_BY" />
+		<result property="inspector" column="INSPECTOR" />
+		<result property="totalAmount" column="TOTAL_AMOUNT" />
+		<result property="importNum" column="IMPORT_NUM" />
+		<result property="crequest" column="CREQUEST" />
+		<result property="customName" column="CUSTOM_NAME" />
+		<result property="deliveryPeriod" column="DELIVERY_PERIOD" />
+		<result property="shipTime" column="SHIP_TIME" />
+		<result property="tradeTerms" column="TRADE_TERMS" />
+		<result property="remark" column="REMARK" />
+		<result property="printStyle" column="PRINT_STYLE" />
+		<result property="oldState" column="OLD_STATE" />
+		<result property="state" column="STATE" />
+		<result property="outState" column="OUT_STATE" />
+
+		<result property="createBy" column="CREATE_BY" />
+		<result property="createDept" column="CREATE_DEPT" />
+		<result property="createTime" column="CREATE_TIME" />
 	</resultMap>
-	
-	<select id="findPage" parameterType="jk.pagination.Page" resultMap="contractRM">
+
+	<resultMap type="jk.vo.ContractVO" id="contractVORM" extends="contractRM">
+		<!-- 合同与货物一对多的关系 -->
+		<collection property="contractProducts" ofType="jk.vo.ContractProductVO">
+			<id property="id" column="CONTRACT_PRODUCT_ID" />
+			<result property="productNo" column="PRODUCT_NO" />
+			<result property="productImage" column="PRODUCT_IMAGE" />
+			<result property="productDesc" column="PRODUCT_DESC" />
+			<result property="cnumber" column="CNUMBER" />
+			<result property="outNumber" column="OUT_NUMBER" />
+			<result property="loadingRate" column="LOADING_RATE" />
+			<result property="boxNum" column="BOX_NUM" />
+			<result property="packingUnit" column="PACKING_UNIT" />
+			<result property="price" column="PRICE" />
+			<result property="amount" column="AMOUNT" />
+			<result property="finished" column="FINISHED" />
+			<result property="exts" column="EXTS" />
+			<result property="orderNo" column="ORDER_NO" />
+			<!-- 物品和厂家(多对一) -->
+			<association property="factory" javaType="jk.domain.Factory">
+				<id property="id" column="FACTORY_ID" />
+				<result property="fullName" column="FULL_NAME" />
+				<result property="factoryName" column="FACTORY_NAME" />
+				<result property="contacts" column="CONTACTS" />
+			</association>
+
+			<collection property="extCproducts" ofType="jk.domain.ExtCproduct">
+				<id property="id" column="EXT_CPRODUCT_ID" />
+
+				<result property="ctype" column="CTYPE" />
+
+				<result property="productNo" column="PRODUCT_NO" />
+				<result property="productImage" column="PRODUCT_IMAGE" />
+				<result property="productDesc" column="PRODUCT_DESC" />
+				<result property="cnumber" column="CNUMBER" />
+				<result property="packingUnit" column="PACKING_UNIT" />
+				<result property="price" column="PRICE" />
+				<result property="amount" column="AMOUNT" />
+				<result property="productRequest" column="PRODUCT_REQUEST" />
+				<result property="orderNo" column="ORDER_NO" />
+				<!--附件和厂家(多对一) -->
+				<association property="factory" javaType="jk.domain.Factory">
+					<id property="id" column="FACTORY_ID" />
+					<result property="fullName" column="FULL_NAME" />
+					<result property="factoryName" column="FACTORY_NAME" />
+					<result property="contacts" column="CONTACTS" />
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="findPage" parameterType="jk.pagination.Page"
+		resultMap="contractRM">
 		select * from contract_c LIMIT #{pageNo},#{pageSize}
 	</select>
-	
+
 	<select id="find" parameterType="map" resultMap="contractRM">
-		select 
+		select
 		( select count(*) from contract_product_c a
-		where a.CONTRACT_ID=c.CONTRACT_ID ) as cpnum
+		where
+		a.CONTRACT_ID=c.CONTRACT_ID ) as cpnum
 		,
-		( select count(*) from ext_cproduct_c b
+		( select count(*) from
+		ext_cproduct_c b
 		where b.contract_product_id in (
-			select contract_product_id from contract_product_c d where d.contract_id=c.contract_id
-			)
-	    ) as extnum
+		select
+		contract_product_id from contract_product_c d where
+		d.contract_id=c.contract_id
+		)
+		) as extnum
 		,
 		c.*
 		from contract_c c
 		<if test="contractid != null">
-		where contract_id = #{contractid}
+			where contract_id = #{contractid}
 		</if>
 		;
 	</select>
-	
+
 	<select id="get" parameterType="string" resultMap="contractRM">
-		select * from contract_c
+		select * from
+		contract_c
 		where contract_id=#{pid}
 	</select>
-	
+
 	<insert id="insert" parameterType="jk.domain.Contract">
-	
+
 		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-			select LAST_INSERT_ID()
+			select
+			LAST_INSERT_ID()
 		</selectKey>
 		<!-- CONTRACT_ID, -->
 		insert into contract_c
 		(OFFEROR,CONTRACT_NO,SIGNING_DATE,INPUT_BY,CHECK_BY,INSPECTOR,TOTAL_AMOUNT,
-			IMPORT_NUM,CREQUEST,CUSTOM_NAME,DELIVERY_PERIOD,SHIP_TIME,TRADE_TERMS,REMARK,PRINT_STYLE,OLD_STATE,STATE,OUT_STATE,
-			CREATE_BY,CREATE_DEPT,CREATE_TIME)
+		IMPORT_NUM,CREQUEST,CUSTOM_NAME,DELIVERY_PERIOD,SHIP_TIME,TRADE_TERMS,REMARK,PRINT_STYLE,OLD_STATE,STATE,OUT_STATE,
+		CREATE_BY,CREATE_DEPT,CREATE_TIME)
 		values
 		(
-			<!-- #{id}, -->
-			#{offeror, jdbcType=VARCHAR},
-			#{contractNo, jdbcType=VARCHAR},
-			#{signingDate, jdbcType=TIMESTAMP},
-			#{inputBy, jdbcType=VARCHAR},
-			#{checkBy, jdbcType=VARCHAR},
-			#{inspector, jdbcType=VARCHAR},
-			#{totalAmount, jdbcType=DOUBLE},
-			#{importNum, jdbcType=INTEGER},
-			#{crequest, jdbcType=VARCHAR},
-			#{customName, jdbcType=VARCHAR},
-			#{deliveryPeriod, jdbcType=TIMESTAMP},
-			#{shipTime, jdbcType=TIMESTAMP},
-			#{tradeTerms, jdbcType=VARCHAR},
-			#{remark, jdbcType=VARCHAR},
-			#{printStyle, jdbcType=CHAR},
-			#{oldState, jdbcType=INTEGER},
-			#{state, jdbcType=INTEGER},
-			#{outState, jdbcType=INTEGER},
-			#{createBy, jdbcType=VARCHAR},
-			#{createDept, jdbcType=VARCHAR},
-			#{createTime, jdbcType=TIMESTAMP}
+		<!-- #{id}, -->
+		#{offeror, jdbcType=VARCHAR},
+		#{contractNo, jdbcType=VARCHAR},
+		#{signingDate, jdbcType=TIMESTAMP},
+		#{inputBy, jdbcType=VARCHAR},
+		#{checkBy, jdbcType=VARCHAR},
+		#{inspector, jdbcType=VARCHAR},
+		#{totalAmount, jdbcType=DOUBLE},
+		#{importNum, jdbcType=INTEGER},
+		#{crequest, jdbcType=VARCHAR},
+		#{customName, jdbcType=VARCHAR},
+		#{deliveryPeriod, jdbcType=TIMESTAMP},
+		#{shipTime, jdbcType=TIMESTAMP},
+		#{tradeTerms, jdbcType=VARCHAR},
+		#{remark, jdbcType=VARCHAR},
+		#{printStyle, jdbcType=CHAR},
+		#{oldState, jdbcType=INTEGER},
+		#{state,
+		jdbcType=INTEGER},
+		#{outState, jdbcType=INTEGER},
+		#{createBy,
+		jdbcType=VARCHAR},
+		#{createDept, jdbcType=VARCHAR},
+		#{createTime,
+		jdbcType=TIMESTAMP}
 		)
 	</insert>
-	
+
 	<update id="update" parameterType="jk.domain.Contract">
 		update contract_c
 		<set>
@@ -123,28 +183,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where contract_id=#{id}
 	</update>
-	
-	
+
+
 	<!-- 删除一条 -->
 	<delete id="deleteById" parameterType="string">
 		delete from contract_c
 		where contract_id=#{pid}
 	</delete>
-	
+
 	<!-- 删除多条（一维字符串数组） -->
 	<delete id="delete" parameterType="string">
 		delete from contract_c
 		where contract_id in
-		<foreach collection="array" item="id" open="(" close=")" separator=",">
+		<foreach collection="array" item="id" open="(" close=")"
+			separator=",">
 			#{id}
 		</foreach>
 	</delete>
-	
+
 	<!-- 修改状态 -->
 	<update id="updateState" parameterType="map">
 		update contract_c set state=#{state}
 		where contract_id in
-		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+		<foreach collection="ids" item="id" open="(" close=")"
+			separator=",">
 			#{id}
 		</foreach>
 	</update>
