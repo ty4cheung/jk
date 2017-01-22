@@ -68,11 +68,11 @@
 
 		<!-- 数据库驱动 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.1.0.7.0</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>mysql</groupId>

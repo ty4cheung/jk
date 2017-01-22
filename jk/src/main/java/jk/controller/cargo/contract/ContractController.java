@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jk.controller.BaseController;
 import jk.domain.Contract;
 import jk.service.ContractService;
+import jk.vo.ContractVO;
 
 @Controller
 public class ContractController extends BaseController {
@@ -65,9 +66,8 @@ public class ContractController extends BaseController {
 
 	@RequestMapping({ "/cargo/contract/toview.action" })
 	public String toview(String id, Model model) {
-		Map hashMap = new HashMap<String,Object>();
-		hashMap.put("contractid", id);
-		Contract obj = this.contractService.find(hashMap).get(0);
+		
+		ContractVO obj = this.contractService.view(id);
 		model.addAttribute("obj", obj);
 
 		return "/cargo/contract/jContractView";

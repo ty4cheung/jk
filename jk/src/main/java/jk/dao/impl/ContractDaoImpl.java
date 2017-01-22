@@ -4,6 +4,7 @@ import java.util.Map;
 
 import jk.dao.ContractDao;
 import jk.domain.Contract;
+import jk.vo.ContractVO;
 
 /**
  * @author zhangtai
@@ -27,6 +28,11 @@ public class ContractDaoImpl extends BaseDaoImpl<Contract> implements ContractDa
 	public void updateState(Map map) {
 		// TODO Auto-generated method stub
 		  super.getSqlSession().update(super.getNs() + ".updateState", map);
+	}
+
+	public ContractVO view(String id) {
+		
+		return super.getSqlSession().selectOne(super.getNs()+".view", id);
 	}
 
 }

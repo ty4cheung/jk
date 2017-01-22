@@ -6,6 +6,7 @@ import java.util.Map;
 
 import jk.domain.Contract;
 import jk.pagination.Page;
+import jk.vo.ContractVO;
 
 /**
  * @author zhangtai
@@ -14,4 +15,6 @@ import jk.pagination.Page;
 public interface ContractDao extends BaseDao<Contract> {
 
 	public abstract void updateState(Map paramMap);
+
+	public abstract ContractVO view(String id);
 }

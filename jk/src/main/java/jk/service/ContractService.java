@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jk.domain.Contract;
 import jk.pagination.Page;
+import jk.vo.ContractVO;
 
 public abstract interface ContractService {
 	  public abstract List<Contract> findPage(Page paramPage);
@@ -27,5 +28,7 @@ public abstract interface ContractService {
 	  public abstract void submit(Serializable[] paramArrayOfSerializable);
 
 	  public abstract void cancel(Serializable[] paramArrayOfSerializable);
+
+	  public abstract ContractVO view(String id);
 
 }

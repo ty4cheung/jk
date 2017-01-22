@@ -3,7 +3,7 @@ package jk.domain;
 import java.util.Date;
 
 public class Contract {
-	private int id;
+	private String id;
 	private String cpnum;
 	private String extnum;
 	  private String offeror;
@@ -27,10 +27,10 @@ public class Contract {
 	  private String createBy;
 	  private String createDept;
 	  private Date createTime;
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getOfferor() {

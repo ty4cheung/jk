@@ -6,7 +6,7 @@ import java.util.List;
 import jk.domain.ContractProduct;
 
 public class ContractVO {
-	private int id;
+	private String id;
 	private List<ContractProduct> contractProducts; // 货物集合
 	private String cpnum;
 	private String extnum;
@@ -32,11 +32,13 @@ public class ContractVO {
 	private String createDept;
 	private Date createTime;
 
-	public int getId() {
+	
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

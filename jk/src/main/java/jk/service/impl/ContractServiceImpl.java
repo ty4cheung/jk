@@ -14,6 +14,7 @@ import jk.dao.ExtCproductDao;
 import jk.domain.Contract;
 import jk.pagination.Page;
 import jk.service.ContractService;
+import jk.vo.ContractVO;
 
 /**
  * @author zhangtai
@@ -83,6 +84,11 @@ public class ContractServiceImpl implements ContractService {
 	public void cancel(Serializable[] paramArrayOfSerializable) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public ContractVO view(String id) {
+		// TODO Auto-generated method stub
+		return this.contracDao.view(id);
 	}
 
 }
