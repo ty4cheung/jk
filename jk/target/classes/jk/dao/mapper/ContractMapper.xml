@@ -59,11 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<result property="contacts" column="CONTACTS" />
 			</association>
 
-<<<<<<< HEAD
 			<collection property="extCproducts" ofType="jk.vo.ExtCproductVO">
-=======
-			<collection property="extCproducts" ofType="jk.domain.ExtCproduct">
->>>>>>> 8fd0a18581820126176fd6c3acf28beb85b8cd3b
 				<id property="id" column="EXT_CPRODUCT_ID" />
 
 				<result property="ctype" column="CTYPE" />

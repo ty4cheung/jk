@@ -47,5 +47,9 @@
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="ns" value="jk.dao.mapper.SysCodeMapper"></property>
 	</bean>
+	<bean id="outProductDao" class="jk.dao.impl.OutProductDaoImpl">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="ns" value="jk.dao.mapper.OutProductMapper"></property>
+	</bean>
 
 </beans>

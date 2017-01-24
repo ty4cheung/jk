@@ -28,11 +28,17 @@
 					<ul>
 						<li><a href="${ctx}/cargo/contract/list.action"
 							onclick="linkHighlighted(this)" target="main" id="aa_1">购销合同</a></li>
-						<li><a href="export/jExportList.html" onclick="linkHighlighted(this)" target="main" id="aa_1">报运管理</a></li>
+
+						<li><a href="${ctx}/cargo/outproduct/toedit.action"
+							onclick="linkHighlighted(this)" target="main" id="aa_1">出货表</a></li>
 
 
-						<li><a href="packinglist/jPackingListList.html"  onclick="linkHighlighted(this)" target="main"
-							id="aa_1">装箱管理</a></li>
+						<li><a href="export/jExportList.html"
+							onclick="linkHighlighted(this)" target="main" id="aa_1">报运管理</a></li>
+
+
+						<li><a href="packinglist/jPackingListList.html"
+							onclick="linkHighlighted(this)" target="main" id="aa_1">装箱管理</a></li>
 					</ul>
 				</div>
 			</div>
