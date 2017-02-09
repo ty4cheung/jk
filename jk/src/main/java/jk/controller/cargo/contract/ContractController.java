@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jk.controller.BaseController;
 import jk.domain.Contract;
+import jk.print.ContractPrint;
+import jk.print.ContractPrintTemplate;
 import jk.service.ContractService;
 import jk.vo.ContractVO;
 
@@ -94,4 +98,12 @@ public class ContractController extends BaseController {
 		return "redirect:/cargo/contract/list.action";
 	}
 	
+	//打印
+	@RequestMapping("/cargo/contract/print.action")
+	public void print(String id, HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ContractPrintTemplate cp = new ContractPrintTemplate();
+			
+			ContractVO obj = contractService.view(id);
+			cp.print(obj, request.getSession().getServletContext().getRealPath("/"), response);
+		}
 }

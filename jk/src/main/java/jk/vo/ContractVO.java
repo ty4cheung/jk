@@ -7,7 +7,7 @@ import jk.domain.ContractProduct;
 
 public class ContractVO {
 	private String id;
-	private List<ContractProduct> contractProducts; // 货物集合
+	private List<ContractProductVO> contractProducts; // 货物集合
 	private String cpnum;
 	private String extnum;
 	private String offeror;
@@ -226,11 +226,11 @@ public class ContractVO {
 		this.extnum = extnum;
 	}
 
-	public List<ContractProduct> getContractProducts() {
+	public List<ContractProductVO> getContractProducts() {
 		return contractProducts;
 	}
 
-	public void setContractProducts(List<ContractProduct> contractProducts) {
+	public void setContractProducts(List<ContractProductVO> contractProducts) {
 		this.contractProducts = contractProducts;
 	}
 
