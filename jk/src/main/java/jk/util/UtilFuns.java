@@ -158,8 +158,11 @@ import java.util.Date;
     }
   }
   
-  //类似google那样实现多个关键字的查询，关键字之间用空格或逗号隔开 by tony 20110523
-  //支持的分隔符 英文逗号,中文逗号,空格
+
+  /**
+   * 类似google那样实现多个关键字的查询，关键字之间用空格或逗号隔开 by tony 20110523
+   * 支持的分隔符 英文逗号,中文逗号,空格
+   * */
   public String[] splitFindStr(String str){
 	if(str==null){
 		return null;
@@ -171,7 +174,9 @@ import java.util.Date;
 	return aStr;
  }
  
-  /* 阶梯函数,例如，a,b,c 返回 a;a,b;a,b,c by tony 20110330 */
+  /** 
+   * 阶梯函数,例如，a,b,c 返回 a;a,b;a,b,c by tony 20110330 
+   * */
   static public String[] splitStair(String str,String SplitFlag){
 	  try{
 		  String[] _temp = splitStr(str, SplitFlag);
@@ -192,8 +197,6 @@ import java.util.Date;
    * <br>时间：2004-1-9
    * <br>用法：
    */
-
-
   static public String joinStr(String[] aStr,String SplitFlag){
     StringBuffer sBuffer = new StringBuffer();
     if (aStr != null){
@@ -1128,7 +1131,9 @@ import java.util.Date;
   
   
   
-  //删除最后1个字符
+  /**
+   * 删除最后1个字符
+   * */
   public static String delLastChar(String s){
     try{
       if(s.length()>0){

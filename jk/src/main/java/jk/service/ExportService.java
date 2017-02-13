@@ -23,7 +23,7 @@ public abstract interface ExportService {
 
 	  public abstract Export get(Serializable id);
 
-	  public abstract void insert(Export export);
+	  public void insert(String[] contractIds);
 
 	  public abstract void update(Export export);
 
@@ -35,5 +35,6 @@ public abstract interface ExportService {
 
 	  public abstract void cancel(Serializable[] ids);
 
+	  public abstract List<Contract> getContract();
 	
 }

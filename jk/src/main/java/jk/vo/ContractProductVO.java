@@ -15,7 +15,7 @@ public class ContractProductVO {
 	private String id;
 
 	private Contract contract;
-	private List<ExtCproduct> extCproducts;
+	private List<ExtCproductVO> extCproducts;
 	private Factory factory;// 多对一关系
 
 	private String productNo;
@@ -152,11 +152,11 @@ public class ContractProductVO {
 		this.contract = contract;
 	}
 
-	public List<ExtCproduct> getExtCproducts() {
+	public List<ExtCproductVO> getExtCproducts() {
 		return extCproducts;
 	}
 
-	public void setExtCproducts(List<ExtCproduct> extCproducts) {
+	public void setExtCproducts(List<ExtCproductVO> extCproducts) {
 		this.extCproducts = extCproducts;
 	}
 
