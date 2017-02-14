@@ -1,18 +1,15 @@
 package jk.dao.impl;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
-import jk.dao.ExtCproductDao;
-import jk.domain.ExtCproduct;
-import jk.pagination.Page;
+import jk.dao.ExtEproductDao;
+import jk.domain.ExtEproduct;
 
 /**
  * @author zhangtai
  *
  */
-public class ExtEproductDaoImpl extends BaseDaoImpl<ExtCproduct> implements ExtCproductDao {
+public class ExtEproductDaoImpl extends BaseDaoImpl<ExtEproduct> implements ExtEproductDao {
 
 	public ExtEproductDaoImpl(){
 		super.setNs("jk.dao.mapper.ExtEproductMapper");

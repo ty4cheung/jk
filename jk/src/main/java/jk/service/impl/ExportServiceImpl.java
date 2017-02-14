@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import jk.dao.ContractDao;
 import jk.dao.ExportDao;
@@ -33,6 +34,7 @@ import jk.vo.ExtCproductVO;
  * @Company:	
  * @CreateDate:	2017年2月9日
  */
+@Service
 public class ExportServiceImpl implements ExportService {
 
 	@Resource

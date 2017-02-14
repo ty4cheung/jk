@@ -12,7 +12,7 @@
 	<div class="main">
 		 <div class="zck">
 		  <div class="zc">
-				<div class="zc_line">用户名：
+				<div class="zc_line">用户名11：
 				<!--  onkeyup="showGs(event)" -->
 				<input type="text" value="" name="userName" id="userName"
 				

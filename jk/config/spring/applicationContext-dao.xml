@@ -20,7 +20,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis/SqlMapCongig.xml"></property>
-		<property name="mapperLocations" value="classpath:jk/mapper/*.xml"/>
+		<!-- <property name="mapperLocations" value="classpath:jk/mapper/*.xml"/> -->
 	</bean>
 
 	<!-- 3. 使用自动扫描器 -->
@@ -51,6 +51,15 @@
 	<bean id="outProductDao" class="jk.dao.impl.OutProductDaoImpl">
 	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="ns" value="jk.dao.mapper.OutProductMapper"></property>
+	</bean>
+	<bean id="exportDao" class="jk.dao.impl.ExportDaoImpl">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="ns" value="jk.dao.mapper.ExportDaoMapper"></property>
+	</bean>
+	
+	<bean id="extEproductDao" class="jk.dao.impl.ExtEproductDaoImpl">
+	<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="ns" value="jk.dao.mapper.ExtEproductDaoMapper"></property>
 	</bean>
 
 </beans>
