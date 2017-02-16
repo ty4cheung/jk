@@ -31,7 +31,7 @@
 		<div class="textbox" id="centerTextbox">
 			<div class="textbox-header">
 				<div class="textbox-inner-header">
-					<div class="textbox-title">购销合同列表</div>
+					<div class="textbox-title">购销合同查询列表</div>
 				</div>
 			</div>
 
@@ -63,7 +63,7 @@
 									onmouseout="this.className='odd'">
 									<td><input type="checkbox" name="id" value="${o.id}" /></td>
 									<td>${status.index+1}</td>
-									<td align="right" style="text-align: center;">${o.customName}</td>
+									<td>${o.customName}</td>
 									<td style="text-align: center;">${o.cpnum}／ ${o.extnum}</td>
 									<td><a href="toview.action?id=${o.id}">${o.contractNo}</a></td>
 									<td>${o.inputBy}</td>
