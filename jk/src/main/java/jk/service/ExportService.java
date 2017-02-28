@@ -25,7 +25,17 @@ public abstract interface ExportService {
 
 	  public void insert(String[] contractIds);
 
-	  public abstract void update(Export export);
+	  public abstract void update(Export export,String[] mr_id,
+				Integer[] mr_orderNo,
+				Integer[] mr_cnumber,
+				Double[] mr_grossWeight,
+				Double[] mr_netWeight,
+				Double[] mr_sizeLength,
+				Double[] mr_sizeWidth,
+				Double[] mr_sizeHeight,
+				Double[] mr_exPrice,
+				Double[] mr_tax,
+				Integer[] mr_changed);
 
 	  public abstract void deleteById(Serializable id);
 

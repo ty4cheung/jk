@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="jk/dao/mapper/SysCodeMapper.xml"/>
 		<mapper resource="jk/dao/mapper/OutProductMapper.xml"/>
 		<mapper resource="jk/dao/mapper/ExportMapper.xml"/>
+		<mapper resource="jk/dao/mapper/PackingListMapper.xml"/>
 	</mappers>
 
 </configuration>

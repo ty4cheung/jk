@@ -16,7 +16,7 @@
 						<ul>
 							<li id="view"><a href="#"
 								onclick="formSubmit('toview.action','_self');this.blur();">查看</a></li>
-							
+
 							<li id="update"><a href="#"
 								onclick="formSubmit('toupdate.action','_self');this.blur();">修改</a></li>
 							<li id="delete"><a href="#"
@@ -25,7 +25,9 @@
 								onclick="formSubmit('submit.action','_self');this.blur();">上报</a></li>
 							<li id="new"><a href="#"
 								onclick="formSubmit('cancel.action','_self');this.blur();">取消</a></li>
-			
+							<li id="new"><a href="#"
+								onclick="formSubmit('${ctx}/cargo/packinglist/tocreate.action','_self');this.blur();">装箱</a></li>
+
 						</ul>
 					</div>
 				</div>
@@ -49,14 +51,13 @@
 									onclick="checkAll('id',this)"></td>
 								<td class="tableHeader">序号</td>
 								<td class="tableHeader">合同或确认书号</td>
-								<td class="tableHeader" align="right" >货物/附件</td>
-								<td class="tableHeader">合同号</td>
-								<td class="tableHeader">制单人</td>
-								<td class="tableHeader">审单人</td>
-								<td class="tableHeader">验货员</td>
-								<td class="tableHeader">签单日期</td>
-								<td class="tableHeader">交货期限</td>
-								<td class="tableHeader">船期</td>
+								<td class="tableHeader">信用证号</td>
+								<td class="tableHeader" align="right">货物/附件</td>
+								<td class="tableHeader">收货人及地址</td>
+								<td class="tableHeader">装运港</td>
+								<td class="tableHeader">目的港</td>
+								<td class="tableHeader">运输方式</td>
+								<td class="tableHeader">价格条件</td>
 								<td class="tableHeader">制单日期</td>
 								<td class="tableHeader">状态</td>
 								<td class="tableHeader">操作</td>
@@ -69,19 +70,16 @@
 									onmouseout="this.className='odd'">
 									<td><input type="checkbox" name="id" value="${o.id}" /></td>
 									<td>${status.index+1}</td>
-									<td align="right" style="text-align: center;">${o.customName}</td>
-									<td style="text-align: center;">${o.cpnum} ／ ${o.extnum}</td>
-									<td><a href="toview.action?id=${o.id}">${o.contractNo}</a></td>
-									<td>${o.inputBy}</td>
-									<td>${o.checkBy}</td>
-									<td>${o.inspector}</td>
-									<td><fmt:formatDate value="${o.signingDate}"
+									<td><a href="toview.action?id=${o.id}">${o.customerContract}</a></td>
+									<td>${o.lcno}</td>
+									<td align="center">${o.epnum}/${o.extnum}</td>
+									<td>${o.consignee}</td>
+									<td>${o.shipmentPort}</td>
+									<td>${o.destinationPort}</td>
+									<td>${o.transportMode}</td>
+									<td>${o.priceCondition}</td>
+									<td><fmt:formatDate value="${o.inputDate}"
 											pattern="yyyy-MM-dd" /></td>
-									<td><fmt:formatDate value="${o.deliveryPeriod}"
-											pattern="yyyy-MM-dd" /></td>
-									<td><fmt:formatDate value="${o.shipTime}"
-											pattern="yyyy-MM-dd" /></td>
-									<td>${o.totalAmount}</td>
 									<td><c:if test="${o.state==1}">
 											<font color="green">已上报</font>
 										</c:if> <c:if test="${o.state==0}">草稿</c:if></td>
