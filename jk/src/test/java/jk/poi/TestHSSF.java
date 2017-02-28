@@ -36,6 +36,26 @@ import jk.vo.ContractVO;
 
 public class TestHSSF {
 
+	@Test
+	public void test(){
+		int[] a ={9,1,2,9,13,5};
+		for(int i=0;i<a.length;i++){
+			for(int j=a.length-1;j>=0;j--){
+				if((a[i]+a[j])==14){
+					a[i]=0;
+					a[j]=0;
+				}
+			}
+		}
+		List list=new ArrayList();
+		for (int i = 0; i < a.length; i++) {
+			if(a[i]!=0){
+				list.add(a[i]);
+			}
+		}
+		System.out.println(list);
+	}
+	
 	
 	@Test
 	public void cloneSheet() throws FileNotFoundException, IOException, ParseException{
